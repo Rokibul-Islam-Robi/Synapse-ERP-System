@@ -1,0 +1,27 @@
+# System and OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE and Editor Files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Environment & Private Secrets
+.env
+.env.local
+.env.*.local
+
+# Vercel & Cloud Build Artifacts
+.vercel
+node_modules/
+npm-debug.log*
+
+# Application Logs
+*.log
+scratch/
