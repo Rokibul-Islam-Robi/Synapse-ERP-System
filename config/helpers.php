@@ -1,5 +1,11 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
+    if (!headers_sent()) {
+        ini_set('session.cookie_httponly', '1');
+        ini_set('session.use_only_cookies', '1');
+        ini_set('session.cookie_samesite', 'Lax');
+        ini_set('session.cookie_path', '/');
+    }
     session_start();
 }
 
