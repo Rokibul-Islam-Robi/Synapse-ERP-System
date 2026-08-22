@@ -1,105 +1,125 @@
-# Synapse-ERP
+# Synapse-ERP System
 
 <p align="center">
-  <img src="mini_inventory_management_system/assets/img/logo.svg" alt="Synapse-ERP Logo" width="280">
+  <img src="assets/img/favicon.svg" alt="Synapse-ERP Logo" width="120">
 </p>
 
 <p align="center">
-  <strong>Next-Gen Corporate Inventory &amp; Supply Intelligence</strong><br>
-  <em>Precision Stock Control for Modern Enterprises</em>
+  <strong>Next-Generation Corporate Inventory &amp; Supply Intelligence</strong><br>
+  <em>Precision Multi-Tier Stock Control, Real-Time Valuation &amp; Audit Governance</em>
 </p>
 
 <p align="center">
+  <a href="https://synapse-erp-system.vercel.app"><img src="https://img.shields.io/badge/Live%20Demo-Vercel%20Production-00f59b?style=for-the-badge&logo=vercel&logoColor=black" alt="Live Demo on Vercel"></a>
   <img src="https://img.shields.io/badge/PHP-8.2%2B-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP 8.2+">
-  <img src="https://img.shields.io/badge/MySQL-8.0%2B-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL 8.0+">
+  <img src="https://img.shields.io/badge/Database-TiDB%20%7C%20MySQL%208.0-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL 8.0+ / TiDB Cloud">
+  <img src="https://img.shields.io/badge/Theme-White%20%26%20Neon%20Green-10b981?style=for-the-badge" alt="Neon Green Theme">
   <img src="https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker Ready">
-  <img src="https://img.shields.io/badge/RBAC-Admin%20%7C%20Manager%20%7C%20Staff-10b981?style=for-the-badge" alt="RBAC">
-  <img src="https://img.shields.io/badge/Tests-100%25%20Passing-success?style=for-the-badge" alt="Tests Passing">
   <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="MIT License">
 </p>
 
 ---
 
+## 🌐 Live Production Deployment
+
+Access the live cloud deployment of Synapse-ERP instantly:
+👉 **[https://synapse-erp-system.vercel.app](https://synapse-erp-system.vercel.app)**
+
+---
+
 ## 📌 Executive Overview
 
-**Synapse-ERP** is an enterprise-grade inventory governance and supply intelligence platform engineered for mid-to-large-scale commercial operations, distribution centers, and multi-departmental enterprises. 
+**Synapse-ERP** is an enterprise-grade inventory governance, supply chain management, and financial stock valuation platform designed for commercial operations, warehouses, distribution networks, and corporate enterprises.
 
-Equipped with a **split-panel authentication portal**, **multi-tier RBAC authorization**, **real-time valuation algorithms**, **automated reorder deficit engine**, **in-app live notification drawer**, and **Docker containerization**, Synapse-ERP ensures complete operational visibility and transaction audit compliance.
+Engineered with a **White &amp; Neon-Green organic design system**, **stateless signed cookie authentication**, **sub-second database connection pooling**, and **multi-tier RBAC authorization**, Synapse-ERP guarantees zero latency, complete audit compliance, and seamless cloud serverless scalability.
 
 ---
 
 ## 🌟 Key Capabilities & Architecture
 
-### 1. 🛡️ Split-Panel Authentication & RBAC Engine
-* **Split-Panel UI**: Dark navy hero brand panel + clean corporate card with embedded input icons and password view toggle.
-* **1-Click Demo Role Switcher**: Instant switching between `Admin`, `Manager`, and `Staff` roles with preloaded credentials.
-* **Role-Based Access Control (RBAC)**:
-  * **Admin**: System-wide authority, user account creation, permission governance, and audit trails.
-  * **Manager**: Master catalogs, stock adjustments, supplier/client linkages, valuation reports, and restock alerts.
-  * **Staff**: Operational receiving (Stock In) and order dispatch (Stock Out) with zero modification rights over historical logs.
+### 1. 🛡️ White Canvas &amp; Neon-Green Modern Landing / Auth Portal
+* **Modern Organic Composition**: Crisp pure white canvas (`#ffffff`) featuring top-left organic neon green ribbon, top navigation bar, and fluid botanical illustration with smooth 3D floating keyframe animations.
+* **1-Click Demo Role Chips**: Instant pre-filled credentials for `Admin`, `Manager`, and `Staff` roles.
+* **Stateless Signed Cookie Authentication (`HMAC-SHA256`)**: Bulletproof session persistence designed specifically for serverless lambda environments (Vercel, AWS Lambda, Cloudflare) with zero `ERR_TOO_MANY_REDIRECTS`.
+* **Multi-Tier Role-Based Access Control (RBAC)**:
+  * 👨‍💼 **Admin**: Full authority, user account creation, system configuration, activity logging, and permission governance.
+  * 📋 **Manager**: Product &amp; category catalogs, stock transactions, vendor &amp; client directories, valuation reports, and restock alerts.
+  * 📦 **Staff**: Operational receiving (Stock In) and order dispatch (Stock Out) with strict view-only permissions for sensitive logs.
 
-### 2. 📈 Inventory Valuation & Stock Movement
-* **Live Financial Asset Tracking**: Real-time asset valuation based on buying prices:
-  $$\text{Asset Valuation} = \sum (\text{Current Stock}_i \times \text{Buying Price}_i)$$
-* **Stock Consistency Safeguards**: Strict mathematical balance formula:
+### 2. 📈 Inventory Valuation &amp; Stock Math Balances
+* **Live Financial Asset Tracking**: Real-time inventory asset valuation based on buying rates:
+  $$\text{Total Asset Value} = \sum (\text{Current Stock}_i \times \text{Buying Price}_i)$$
+* **Mathematical Consistency Formula**:
   $$\text{Current Stock} = \text{Opening Stock} + \sum(\text{Stock In}) - \sum(\text{Stock Out})$$
-* **Negative Stock Prevention**: Database and backend validation prevents dispatching units beyond current physical balance.
+* **Negative Stock Prevention**: Database-level constraints and backend logic strictly prohibit dispatching units beyond available physical balance.
 
-### 3. 🚨 Real-Time Reorder & Deficit Engine
-* **Threshold Monitors**: Automatic identification of SKUs where $\text{Current Stock} \le \text{Alert Quantity}$.
-* **Deficit Calculation**: Calculates precise restock deficit quantities:
+### 3. 🚨 Real-Time Reorder &amp; Deficit Alert Engine
+* **Threshold Monitors**: Real-time identification of SKUs where $\text{Current Stock} \le \text{Alert Quantity}$.
+* **Automated Deficit Calculation**:
   $$\text{Deficit} = \max(0, \text{Alert Quantity} \times 2 - \text{Current Stock})$$
-* **1-Click Restock Pipeline**: Direct navigation from alerts to purchase requisition with prefilled SKU parameters.
+* **1-Click Restock Pipeline**: Direct navigation from alerts to purchase requisition with prefilled product SKU parameters.
 
-### 4. 🔔 Interactive Notification Center & Server-Side Pagination
-* **Live Topbar Notification Drawer**: Real-time notifications for critical reorder alerts and high-volume dispatches.
-* **Pagination & Multi-Filtering**: Server-side pagination with category dropdowns, SKU search, and CSV/Print export.
-
-### 5. 🐳 Full Docker & Multi-Container Stack
-* Complete `Dockerfile` and `docker-compose.yml` defining an isolated multi-container stack (PHP 8.2 Apache + MySQL 8.0 with automated health checks + phpMyAdmin).
+### 4. 📊 Interactive Analytics &amp; Notification Center
+* **Chart.js Visualization**: Real-time 6-month stock flow bar charts (Inflow vs. Outflow) and category distribution doughnut charts.
+* **Live Topbar Notification Drawer**: Instant badge alerts for low-stock warnings and high-volume operations.
+* **Universal CSV Export &amp; Live Search**: Instant client-side and server-side filtering with one-click CSV report downloads.
 
 ---
 
 ## 🔑 Demo Role Credentials
 
-| Role | Username | Password | Default Permissions |
+| Role | Username / Email | Password | Access Scope |
 | :--- | :--- | :--- | :--- |
-| 🛡️ **Enterprise Admin** | `admin` | `password` | Complete access, User Management, Activity Logs |
-| 📊 **Inventory Manager** | `manager` | `password` | Products, Stock In/Out, Partners, All Reports |
-| 📦 **Warehouse Staff** | `staff` | `password` | Stock In (Receive), Stock Out (Dispatch), Low Stock View |
+| 🛡️ **Enterprise Admin** | `admin` / `admin@company.com` | `password` | Complete access, User Management, Activity Logs |
+| 📊 **Inventory Manager** | `manager` / `manager@company.com` | `password` | Products, Stock In/Out, Partners, All Reports |
+| 📦 **Warehouse Staff** | `staff` / `staff@company.com` | `password` | Stock In (Receive), Stock Out (Dispatch), Low Stock Alerts |
 
 ---
 
-## 🚀 Quick Start & Installation
+## 🚀 Deployment & Installation Guide
 
-### Option A: Localhost with XAMPP (Instant)
+### Option 1: Deploy to Vercel + TiDB Cloud (Production Serverless)
 
-1. **Clone or Copy Repository**:
-   Place the project folder into your XAMPP web root:
+1. **Set Up Cloud Database**:
+   - Create a free MySQL database on [TiDB Cloud](https://tidbcloud.com/) or [Aiven](https://aiven.io/).
+   - Copy connection parameters (Host, Port `4000`, User, Password, Database `test`).
+2. **Deploy on Vercel**:
+   - Import your GitHub repository into [Vercel](https://vercel.com).
+   - In Vercel Project Settings > **Environment Variables**, add:
+     - `DB_HOST`: `gateway01.ap-southeast-1.prod.aws.tidbcloud.com`
+     - `DB_PORT`: `4000`
+     - `DB_USER`: `your_tidb_username`
+     - `DB_PASS`: `your_tidb_password`
+     - `DB_NAME`: `test`
+3. Click **Deploy**. Vercel will automatically build the serverless functions via `api/index.php`.
+
+---
+
+### Option 2: Localhost with XAMPP (Instant)
+
+1. Place the project folder into your XAMPP web root:
    ```bash
-   C:\xampp\htdocs\synapse_erp
+   C:\xampp\htdocs\Synapse-ERP
    ```
-2. **Start Apache & MySQL**:
-   Open **XAMPP Control Panel** and start **Apache** and **MySQL**.
-3. **Launch in Browser**:
-   Navigate to:
+2. Start **Apache** and **MySQL** in XAMPP Control Panel.
+3. Open your browser and navigate to:
    ```text
-   http://localhost/synapse_erp/
+   http://localhost/Synapse-ERP/
    ```
-   > **Note:** The built-in database connector automatically creates the database (`synapse_erp_db`) and bootstraps all tables on first launch.
+   > **Note:** The auto-migration engine will automatically create the database tables and seed demo users on initial launch.
 
 ---
 
-### Option B: Docker Container Stack (1-Command Launch)
+### Option 3: Multi-Container Docker Stack
 
 1. Ensure [Docker Desktop](https://www.docker.com/) is installed and running.
-2. Open terminal in the project root and run:
+2. In the project root, run:
    ```bash
    docker-compose up -d
    ```
 3. Access services:
-   * **Synapse-ERP Portal:** `http://localhost:8080`
-   * **phpMyAdmin Console:** `http://localhost:8081` (User: `root`, Password: `secret`)
+   * **Synapse-ERP Application:** `http://localhost:8080`
+   * **phpMyAdmin Database Console:** `http://localhost:8081` (User: `root`, Password: `secret`)
 
 ---
 
@@ -111,87 +131,54 @@ Synapse-ERP includes an automated CLI integration test suite verifying database 
 php tests/run_tests.php
 ```
 
-**Test Execution Output:**
-```text
-========================================================
-  SYNAPSE-ERP AUTOMATED TEST SUITE
-========================================================
-
-▶ Running Suite 1: Database Connectivity & Tables...
-  [PASS] Database PDO Connection is Active
-  [PASS] Table 'users' exists in database
-  [PASS] Table 'categories' exists in database
-  [PASS] Table 'suppliers' exists in database
-  [PASS] Table 'customers' exists in database
-  [PASS] Table 'products' exists in database
-  [PASS] Table 'stock_transactions' exists in database
-  [PASS] Table 'activity_logs' exists in database
-
-▶ Running Suite 2: Demo Role Credentials (Admin, Manager, Staff)...
-  [PASS] User account 'admin' exists (Role: admin)
-  [PASS] User 'admin' password 'password' verifies successfully
-  [PASS] User account 'manager' exists (Role: manager)
-  [PASS] User 'manager' password 'password' verifies successfully
-  [PASS] User account 'staff' exists (Role: staff)
-  [PASS] User 'staff' password 'password' verifies successfully
-
-▶ Running Suite 3: RBAC Authorization Matrix...
-  [PASS] Admin role: is_admin() is TRUE & can_manage_users() is TRUE
-  [PASS] Manager role: is_manager() is TRUE & can_manage_users() is FALSE
-  [PASS] Staff role: is_staff() is TRUE & can_delete() is FALSE
-
-▶ Running Suite 4: Inventory Mathematical Logic...
-  [PASS] Stock Equation (50 Opening + 20 IN - 15 OUT = 55)
-
-========================================================
-  TEST EXECUTION SUMMARY: 35/35 PASSED (100% PASS)
-========================================================
-```
-
 ---
 
 ## 📂 Project Structure
 
 ```text
-synapse_erp/
+Synapse-ERP/
+├── api/
+│   └── index.php                # Vercel Serverless Front-Controller Router
 ├── assets/
 │   ├── css/
-│   │   └── style.css            # Corporate Slate & Blue Design System
+│   │   └── style.css            # Modern White, Neon Green & Obsidian Design System
 │   ├── img/
-│   │   ├── logo.svg             # Isometric Vector Brand Logo
-│   │   └── favicon.svg          # High-Res SVG Favicon
+│   │   ├── favicon.svg          # Isometric Neon Green Geometric Synapse Favicon
+│   │   └── logo.svg             # Vector Enterprise Logo
 │   └── js/
-│       └── app.js               # Notification Drawer & Live Table Filters
+│       └── app.js               # Notification Drawer & Live Table Search
 ├── auth/
-│   ├── login.php                # Split-Panel Auth with 1-Click Role Switcher
-│   └── logout.php               # Secure Session Teardown
-├── categories/                  # Category Classification CRUD
+│   ├── login.php                # White & Neon Green Landing with 1-Click Role Switcher
+│   └── logout.php               # Secure Session & Cookie Teardown
+├── categories/                  # Product Taxonomy Classification CRUD
 ├── config/
-│   ├── database.php             # Smart Multi-DB Auto-Create Connector
-│   ├── helpers.php              # Dynamic base_url, RBAC & Flash Notifications
-│   └── pagination.php           # Server-Side Pagination Helper
-├── customers/                   # Corporate Clients & Departments CRUD
+│   ├── cacert.pem               # Bundled Mozilla CA Certificate for Cloud SSL/TLS
+│   ├── database.php             # Persistent PDO Connector & Lazy Auto-Migration Engine
+│   ├── helpers.php              # Signed Auth Cookie, Dynamic base_url & RBAC Helpers
+│   └── pagination.php           # Server-Side Pagination Utility
+├── customers/                   # Corporate Clients & Internal Departments Directory
 ├── database/
-│   ├── inventory_db.sql         # Enterprise SQL Schema & Demo Seed
+│   ├── inventory_db.sql         # Enterprise SQL Schema & Seeds
 │   └── migrate.php              # Auto-Bootstrap & Schema Migration Engine
 ├── includes/
-│   ├── header.php               # HTML Head, Favicon & Chart.js
-│   ├── sidebar.php              # Role-Adapted Navigation & Notification Drawer
-│   └── footer.php               # Scripts & Document Closure
-├── products/                    # Products Master with Pagination & Filters
+│   ├── header.php               # HTML Head, Inlined CSS Fallbacks & Chart.js
+│   ├── sidebar.php              # Dark Obsidian Sidebar with Neon Active States
+│   └── footer.php               # JavaScript Utilities & Document Closure
+├── products/                    # Products Master Catalog with Filters & Pagination
 ├── reports/
-│   ├── current_stock.php        # Real-Time Valuation & Quantity Balances
-│   ├── date_wise.php            # Transaction Ledger & Audit Trail
+│   ├── current_stock.php        # Real-Time Stock Valuation & Asset Balances
+│   ├── date_wise.php            # Transaction Ledger & Audit Trails
 │   └── low_stock.php            # Reorder Deficit Monitor & 1-Click Restock
 ├── stock/
-│   ├── stock_in.php             # Procurement Receiving & Supplier Inward
+│   ├── stock_in.php             # Supplier Inward & Procurement Receiving
 │   └── stock_out.php            # Sales Dispatch & Departmental Outward
-├── suppliers/                   # Vendor & Supplier Directory CRUD
+├── suppliers/                   # Supplier & Vendor Directory CRUD
 ├── tests/
-│   └── run_tests.php            # Automated Integration Test Suite
-├── users/                       # Admin User Management & RBAC Controls
+│   └── run_tests.php            # Automated CLI Integration Test Suite
+├── users/                       # Administrator User Management & RBAC Governance
 ├── dashboard.php                # Corporate Executive Dashboard & Analytics
-├── Dockerfile                   # PHP 8.2 Apache Container
+├── vercel.json                  # Vercel Serverless Function & Rewrite Configuration
+├── Dockerfile                   # PHP 8.2 Apache Container Definition
 ├── docker-compose.yml           # Multi-Container Compose Configuration
 ├── LICENSE                      # MIT License
 └── README.md                    # System Documentation
@@ -209,3 +196,4 @@ synapse_erp/
 ## 📄 License
 
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
