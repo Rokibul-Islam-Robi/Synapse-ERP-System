@@ -25,32 +25,36 @@ if ($sslCa && file_exists($sslCa)) {
 }
 
 try {
-    // 1. Connect to MySQL server
-    $pdo = new PDO("mysql:host=$host;port=$port;charset=utf8mb4", $username, $password, $dsnOptions);
-
-    // 2. Select or create database
-    $stmt = $pdo->query("SHOW DATABASES LIKE '$db_primary'");
-    $hasPrimary = $stmt->fetch();
-
-    $stmt2 = $pdo->query("SHOW DATABASES LIKE '$db_fallback'");
-    $hasFallback = $stmt2->fetch();
-
-    if ($hasPrimary) {
-        $activeDb = $db_primary;
-    } elseif ($hasFallback) {
-        $activeDb = $db_fallback;
+    // 1. Connect to MySQL server (Direct database connection for Cloud DBs or auto-detect for Localhost)
+    if ($host !== 'localhost' && !empty($db_primary)) {
+        $pdo = new PDO("mysql:host=$host;port=$port;dbname=$db_primary;charset=utf8mb4", $username, $password, $dsnOptions);
     } else {
-        // Auto-create database if privileges allow
-        try {
-            $pdo->exec("CREATE DATABASE IF NOT EXISTS `$db_primary` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
-            $activeDb = $db_primary;
-        } catch (Exception $ex) {
-            $activeDb = $db_primary;
-        }
-    }
+        $pdo = new PDO("mysql:host=$host;port=$port;charset=utf8mb4", $username, $password, $dsnOptions);
 
-    // 3. Switch to active database
-    $pdo->exec("USE `$activeDb`");
+        // 2. Select or create database
+        $stmt = $pdo->query("SHOW DATABASES LIKE '$db_primary'");
+        $hasPrimary = $stmt->fetch();
+
+        $stmt2 = $pdo->query("SHOW DATABASES LIKE '$db_fallback'");
+        $hasFallback = $stmt2->fetch();
+
+        if ($hasPrimary) {
+            $activeDb = $db_primary;
+        } elseif ($hasFallback) {
+            $activeDb = $db_fallback;
+        } else {
+            // Auto-create database if privileges allow
+            try {
+                $pdo->exec("CREATE DATABASE IF NOT EXISTS `$db_primary` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
+                $activeDb = $db_primary;
+            } catch (Exception $ex) {
+                $activeDb = $db_primary;
+            }
+        }
+
+        // 3. Switch to active database
+        $pdo->exec("USE `$activeDb`");
+    }
 
     // 4. Run automatic schema migrations & seedings
     require_once __DIR__ . '/../database/migrate.php';
