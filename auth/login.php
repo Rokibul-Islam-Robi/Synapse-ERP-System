@@ -76,11 +76,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body class="auth-split-body">
 
 <div class="auth-split-container">
-    <!-- Left Hero / Brand Panel -->
+    <!-- Left Hero / Brand Panel (Modern Organic & Tech Synergy) -->
     <div class="auth-left-hero">
         <div class="auth-brand-badge-group">
             <div class="auth-hero-logo">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
                     <path d="m7.5 4.27 9 5.15"></path>
                     <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path>
                     <path d="m3.3 7 8.7 5 8.7-5"></path>
@@ -88,43 +88,93 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </svg>
             </div>
             <div class="auth-hero-brand-name">
-                <span class="pill-badge">SYNAPSE INTELLIGENCE</span>
+                <span class="pill-badge">ENTERPRISE CLOUD</span>
                 <span class="brand-text">Synapse-ERP</span>
             </div>
         </div>
 
-        <h2 class="auth-hero-title">Enterprise Inventory &amp; Supply Governance</h2>
-        <p class="auth-hero-desc">
-            Real-time multi-tier stock valuation, reorder alert automation, and strict audit compliance engineered for modern enterprises.
-        </p>
+        <!-- Custom Organic Tech Art inspired by Reference Image -->
+        <div class="auth-hero-art-wrapper">
+            <svg viewBox="0 0 340 220" width="100%" height="200" style="max-width: 320px;" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="artNeonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#00f59b" />
+                        <stop offset="100%" stop-color="#059669" />
+                    </linearGradient>
+                    <linearGradient id="artAmberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#f59e0b" />
+                        <stop offset="100%" stop-color="#d97706" />
+                    </linearGradient>
+                    <linearGradient id="artCyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#38bdf8" />
+                        <stop offset="100%" stop-color="#0284c7" />
+                    </linearGradient>
+                    <filter id="neonBlur" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="12" result="blur" />
+                    </filter>
+                </defs>
+
+                <!-- Ambient Glow Behind -->
+                <circle cx="170" cy="110" r="70" fill="#00f59b" opacity="0.18" filter="url(#neonBlur)" />
+
+                <!-- Organic Layered Flora / Petal Wave Forms -->
+                <path d="M170 30 C220 30, 270 70, 260 130 C250 180, 200 200, 160 195 C110 190, 80 160, 85 110 C90 60, 130 30, 170 30 Z" fill="#0c1f38" opacity="0.85" />
+                
+                <!-- Vibrant Organic Leaf/Flora Waves -->
+                <path d="M110 160 C90 120, 120 70, 160 90 C150 130, 130 155, 110 160 Z" fill="url(#artCyanGrad)" opacity="0.85" />
+                <path d="M230 160 C250 120, 220 70, 180 90 C190 130, 210 155, 230 160 Z" fill="url(#artAmberGrad)" opacity="0.85" />
+                <path d="M170 180 C130 170, 135 110, 170 125 C205 110, 210 170, 170 180 Z" fill="url(#artNeonGrad)" />
+
+                <!-- Stylized Central Executive Character / Synapse Core -->
+                <circle cx="170" cy="85" r="18" fill="#f8fafc" />
+                <path d="M165 72 C168 68, 175 68, 178 72 C185 75, 182 88, 170 88 C158 88, 155 75, 165 72 Z" fill="#060c18" />
+                <path d="M148 140 C148 112, 192 112, 192 140 C185 152, 155 152, 148 140 Z" fill="#f59e0b" />
+                
+                <!-- Floating Ambient Floating Hearts / Nodes -->
+                <circle cx="120" cy="65" r="4" fill="#00f59b" />
+                <circle cx="225" cy="55" r="5" fill="#f59e0b" />
+                <circle cx="210" cy="175" r="3.5" fill="#38bdf8" />
+                <circle cx="130" cy="180" r="4" fill="#00f59b" />
+
+                <!-- Floating Glass Metric Badge -->
+                <rect x="35" y="70" width="85" height="32" rx="8" fill="#060c18" fill-opacity="0.8" stroke="#00f59b" stroke-width="1.2" />
+                <text x="45" y="85" fill="#94a3b8" font-size="8" font-weight="600" font-family="Inter, sans-serif">ACCURACY</text>
+                <text x="45" y="96" fill="#00f59b" font-size="10" font-weight="800" font-family="Inter, sans-serif">99.98%</text>
+
+                <!-- Floating Glass Metric Badge 2 -->
+                <rect x="220" y="115" width="90" height="32" rx="8" fill="#060c18" fill-opacity="0.8" stroke="#38bdf8" stroke-width="1.2" />
+                <text x="230" y="130" fill="#94a3b8" font-size="8" font-weight="600" font-family="Inter, sans-serif">REAL-TIME</text>
+                <text x="230" y="141" fill="#38bdf8" font-size="10" font-weight="800" font-family="Inter, sans-serif">Multi-Tier</text>
+            </svg>
+        </div>
+
+        <div>
+            <h2 class="auth-hero-title">Intelligent Supply &amp; Inventory Governance</h2>
+            <p class="auth-hero-desc">
+                High-performance real-time analytics, automated deficit alerts, and audit compliance for modern growing enterprises.
+            </p>
+        </div>
 
         <div class="auth-feature-list">
             <div class="auth-feature-item">
                 <div class="feature-check-icon">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 </div>
                 <span>Role-Based Authentication (Admin, Manager, Staff)</span>
             </div>
 
             <div class="auth-feature-item">
                 <div class="feature-check-icon">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 </div>
-                <span>Real-Time Reorder &amp; Deficit Alert Engine</span>
+                <span>Real-Time Reorder &amp; Low Stock Engine</span>
             </div>
 
             <div class="auth-feature-item">
                 <div class="feature-check-icon">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 </div>
-                <span>Automated Stock Valuation &amp; Transaction Logging</span>
-            </div>
-
-            <div class="auth-feature-item">
-                <div class="feature-check-icon">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                </div>
-                <span>One-Click CSV / Excel Export &amp; Audit Reports</span>
+                <span>Automated Stock Valuation &amp; Auditing</span>
             </div>
         </div>
     </div>
@@ -133,10 +183,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="auth-right-form">
         <div class="auth-form-header">
             <div>
-                <h1 class="auth-form-title">Sign in to Synapse-ERP</h1>
-                <p class="auth-form-subtitle">Access your corporate inventory dashboard</p>
+                <h1 class="auth-form-title">Portal Sign In</h1>
+                <p class="auth-form-subtitle">Enter your corporate credentials to continue</p>
             </div>
-            <span class="version-pill">v2.4 Enterprise</span>
+            <span class="version-pill">v2.5 Enterprise</span>
         </div>
 
         <?php if ($error): ?>
@@ -153,20 +203,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <!-- 1-Click Demo Roles Switcher -->
         <div class="demo-roles-section">
-            <label class="demo-section-label">SELECT DEMO ROLE ACCOUNT (1-CLICK FILL)</label>
+            <label class="demo-section-label">DEMO QUICK SIGN-IN (1-CLICK FILL)</label>
             <div class="demo-role-buttons">
                 <button type="button" class="demo-role-btn active" onclick="fillCredentials('admin', 'password', this)">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                     <span>Admin</span>
                 </button>
 
                 <button type="button" class="demo-role-btn" onclick="fillCredentials('manager', 'password', this)">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2.2"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg>
                     <span>Manager</span>
                 </button>
 
                 <button type="button" class="demo-role-btn" onclick="fillCredentials('staff', 'password', this)">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="m7.5 4.27 9 5.15"></path><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.2"><path d="m7.5 4.27 9 5.15"></path><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path></svg>
                     <span>Staff</span>
                 </button>
             </div>
@@ -192,7 +242,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
 
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 22px;">
                 <label class="form-check" style="font-size: 13px;">
                     <input type="checkbox" name="remember" checked>
                     <span>Remember workstation</span>
@@ -200,13 +250,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <button class="btn-corporate-submit" type="submit">
-                Sign In to Portal
+                <span>Sign In to Portal</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
             </button>
         </form>
 
         <div class="auth-form-footer">
             <div class="ssl-indicator">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                 <span>256-Bit SSL Encrypted Session</span>
             </div>
             <div class="watermark-brand">Synapse-ERP • Precision Control</div>

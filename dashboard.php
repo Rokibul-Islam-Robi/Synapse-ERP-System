@@ -368,15 +368,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     {
                         label: 'Stock In (Received)',
                         data: <?= json_encode($inSeries) ?>,
-                        backgroundColor: '#3b82f6',
-                        borderRadius: 4,
+                        backgroundColor: '#10b981',
+                        borderRadius: 6,
                         barPercentage: 0.6
                     },
                     {
                         label: 'Stock Out (Dispatched)',
                         data: <?= json_encode($outSeries) ?>,
                         backgroundColor: '#f59e0b',
-                        borderRadius: 4,
+                        borderRadius: 6,
                         barPercentage: 0.6
                     }
                 ]
@@ -411,7 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 labels: <?= json_encode($catLabels) ?>,
                 datasets: [{
                     data: <?= json_encode($catCounts) ?>,
-                    backgroundColor: ['#2563eb', '#10b981', '#f59e0b', '#8b5cf6', '#0ea5e9'],
+                    backgroundColor: ['#10b981', '#00f59b', '#38bdf8', '#f59e0b', '#059669'],
                     borderWidth: 2,
                     borderColor: '#ffffff'
                 }]
