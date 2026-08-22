@@ -8,6 +8,12 @@ $host = getenv('DB_HOST') ?: (isset($_ENV['DB_HOST']) ? $_ENV['DB_HOST'] : 'loca
 $port = getenv('DB_PORT') ?: (isset($_ENV['DB_PORT']) ? $_ENV['DB_PORT'] : '3306');
 $db_primary = getenv('DB_NAME') ?: (isset($_ENV['DB_NAME']) ? $_ENV['DB_NAME'] : 'synapse_erp_db');
 $db_fallback = 'mini_inventory_db';
+
+// 'sys', 'information_schema', 'mysql' are reserved MySQL system catalogs where tables cannot be created
+if (in_array(strtolower(trim($db_primary)), ['sys', 'information_schema', 'mysql', 'performance_schema', ''])) {
+    $db_primary = ($host !== 'localhost') ? 'test' : 'synapse_erp_db';
+}
+
 $username = getenv('DB_USER') ?: (isset($_ENV['DB_USER']) ? $_ENV['DB_USER'] : 'root');
 $password = getenv('DB_PASS') ?: (isset($_ENV['DB_PASS']) ? $_ENV['DB_PASS'] : '');
 
