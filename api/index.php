@@ -62,7 +62,18 @@ if (file_exists($targetFile . '.php')) {
     exit;
 }
 
-// 5. Default fallback
+// 5. Handle nested/invalid /auth/ requests (e.g. /auth/dashboard.php or /auth/auth/...)
+if (strpos($cleanPath, 'auth/') === 0) {
+    $sub = substr($cleanPath, 5);
+    if (file_exists($rootDir . '/' . $sub)) {
+        header("Location: /" . $sub);
+        exit;
+    }
+    header("Location: /auth/login.php");
+    exit;
+}
+
+// 6. Default fallback
 require $rootDir . '/index.php';
 
 

@@ -30,13 +30,16 @@ function base_url($path = '') {
         }
     }
     
-    if ($base === '') {
+    if ($base === '' || $base === '/api') {
         $dir = dirname($scriptName);
-        $base = ($dir === '/' || $dir === '\\' || $dir === '.') ? '' : str_replace('\\', '/', $dir);
+        $base = ($dir === '/' || $dir === '\\' || $dir === '.' || $dir === '/api') ? '' : str_replace('\\', '/', $dir);
     }
     
-    $path = ltrim($path, '/');
-    return rtrim($base, '/') . ($path ? '/' . $path : '');
+    $cleanPath = ltrim($path, '/');
+    if (empty($base)) {
+        return '/' . $cleanPath;
+    }
+    return rtrim($base, '/') . '/' . $cleanPath;
 }
 
 function clean($value) {
@@ -45,10 +48,18 @@ function clean($value) {
 }
 
 function redirect($url) {
-    if (!preg_match('~^(?:f|ht)tps?://~i', $url)) {
-        $url = base_url($url);
+    if (preg_match('~^(?:f|ht)tps?://~i', $url)) {
+        header("Location: " . $url);
+        exit;
     }
-    header("Location: " . $url);
+    
+    // If already starts with '/', redirect directly
+    if (substr($url, 0, 1) === '/') {
+        header("Location: " . $url);
+        exit;
+    }
+    
+    header("Location: " . base_url($url));
     exit;
 }
 
