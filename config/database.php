@@ -58,9 +58,13 @@ try {
         $pdo->exec("SET SESSION sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))");
     } catch (Exception $exMode) {}
 
-    // 3. Lazy Schema Migrations: ONLY run if users table does not exist
+    // 3. Lazy Schema Migrations: Check and auto-seed if any demo user is missing
     try {
-        $pdo->query("SELECT 1 FROM users LIMIT 1");
+        $userCount = (int)$pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
+        if ($userCount < 3) {
+            require_once __DIR__ . '/../database/migrate.php';
+            run_migrations($pdo);
+        }
     } catch (Exception $exMigrate) {
         require_once __DIR__ . '/../database/migrate.php';
         run_migrations($pdo);

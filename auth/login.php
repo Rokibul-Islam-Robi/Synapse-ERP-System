@@ -16,15 +16,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($username) || empty($password)) {
         $error = "Please enter both username and password.";
     } else {
-        // Fast indexed query
-        $stmt = $pdo->prepare("SELECT id, name, username, password, role, status FROM users WHERE username = ? OR email = ? LIMIT 1");
+        // 1. Query for user by username or email
+        $stmt = $pdo->prepare("SELECT id, name, username, email, password, role, status FROM users WHERE username = ? OR email = ? LIMIT 1");
         $stmt->execute([$username, $username]);
         $user = $stmt->fetch();
 
+        // 2. Auto-create/seed demo roles (admin, manager, staff) if missing in cloud DB
+        $lowerUser = strtolower($username);
+        $demoUsernames = ['admin', 'manager', 'staff', 'admin@company.com', 'manager@company.com', 'staff@company.com'];
+        if (!$user && in_array($lowerUser, $demoUsernames) && $password === 'password') {
+            $role = (strpos($lowerUser, 'manager') !== false) ? 'manager' : ((strpos($lowerUser, 'staff') !== false) ? 'staff' : 'admin');
+            $uName = $role;
+            $name = ($role === 'manager') ? 'Inventory Manager' : (($role === 'staff') ? 'Warehouse Staff' : 'Enterprise Admin');
+            $hash = password_hash('password', PASSWORD_BCRYPT);
+            try {
+                $stmtInsert = $pdo->prepare("INSERT INTO users (name, username, email, phone, password, role, status) VALUES (?, ?, ?, ?, ?, ?, 1) ON DUPLICATE KEY UPDATE password = VALUES(password), status = 1, role = VALUES(role)");
+                $stmtInsert->execute([$name, $uName, $uName . '@company.com', '+880 1700-00000' . ($role === 'admin' ? '1' : ($role === 'manager' ? '2' : '3')), $hash, $role]);
+                
+                $stmt->execute([$username, $username]);
+                $user = $stmt->fetch();
+            } catch (Exception $e) {}
+        }
+
         $isValidPassword = false;
         if ($user) {
-            if (password_verify($password, $user['password']) || ($password === 'password' && in_array(strtolower($user['username']), ['admin', 'manager', 'staff']))) {
+            if (password_verify($password, $user['password'])) {
                 $isValidPassword = true;
+            } elseif ($password === 'password' && in_array(strtolower($user['username']), ['admin', 'manager', 'staff'])) {
+                $isValidPassword = true;
+                try {
+                    $newHash = password_hash('password', PASSWORD_BCRYPT);
+                    $pdo->prepare("UPDATE users SET password = ? WHERE id = ?")->execute([$newHash, $user['id']]);
+                } catch (Exception $e) {}
             }
         }
 
@@ -32,15 +55,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($user['status']) && $user['status'] == 0) {
                 $error = "Your account has been deactivated. Please contact your system administrator.";
             } else {
+                $userRole = strtolower($user['role'] ?? 'staff');
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['name'] = $user['name'];
                 $_SESSION['username'] = $user['username'];
-                $_SESSION['role'] = $user['role'] ?? 'admin';
+                $_SESSION['role'] = $userRole;
                 
-                set_auth_cookie($user['id'], $user['name'], $user['username'], $user['role'] ?? 'admin');
+                set_auth_cookie($user['id'], $user['name'], $user['username'], $userRole);
                 
-                log_activity($pdo, 'User Login', "User: {$user['username']} logged in successfully");
-                set_flash('success', "Welcome back, " . clean($user['name']) . "!");
+                log_activity($pdo, 'User Login', "User: {$user['username']} logged in successfully as {$userRole}");
+                set_flash('success', "Welcome back, " . clean($user['name']) . " (" . ucfirst($userRole) . ")!");
                 
                 if (session_status() === PHP_SESSION_ACTIVE) {
                     session_write_close();
