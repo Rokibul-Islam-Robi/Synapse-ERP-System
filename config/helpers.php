@@ -45,7 +45,7 @@ function clean($value) {
 }
 
 function redirect($url) {
-    if (!preg_match('~^(?:f|ht)tps?://~i', $url) && substr($url, 0, 1) !== '/') {
+    if (!preg_match('~^(?:f|ht)tps?://~i', $url)) {
         $url = base_url($url);
     }
     header("Location: " . $url);
@@ -56,8 +56,74 @@ function redirect($url) {
 // Authentication & Role-Based Access Control (RBAC)
 // -------------------------------------------------------------
 
+if (!defined('AUTH_SECRET_KEY')) {
+    define('AUTH_SECRET_KEY', 'synapse_erp_secret_key_2026_jwt_token_auth');
+}
+
+function set_auth_cookie($userId, $name, $username, $role) {
+    $payload = json_encode([
+        'uid' => $userId,
+        'name' => $name,
+        'uname' => $username,
+        'role' => $role,
+        'exp' => time() + (86400 * 30)
+    ]);
+    $encoded = base64_encode($payload);
+    $signature = hash_hmac('sha256', $encoded, AUTH_SECRET_KEY);
+    $token = $encoded . '.' . $signature;
+    
+    $isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443);
+    setcookie('synapse_auth_token', $token, [
+        'expires' => time() + (86400 * 30),
+        'path' => '/',
+        'domain' => '',
+        'secure' => $isHttps,
+        'httponly' => true,
+        'samesite' => 'Lax'
+    ]);
+}
+
+function clear_auth_cookie() {
+    setcookie('synapse_auth_token', '', [
+        'expires' => time() - 3600,
+        'path' => '/',
+        'domain' => '',
+        'httponly' => true
+    ]);
+}
+
+function restore_auth_from_cookie() {
+    if (!empty($_SESSION['user_id'])) {
+        return true;
+    }
+    if (empty($_COOKIE['synapse_auth_token'])) {
+        return false;
+    }
+    $parts = explode('.', $_COOKIE['synapse_auth_token']);
+    if (count($parts) !== 2) {
+        return false;
+    }
+    list($encoded, $sig) = $parts;
+    $expectedSig = hash_hmac('sha256', $encoded, AUTH_SECRET_KEY);
+    if (!hash_equals($expectedSig, $sig)) {
+        return false;
+    }
+    $data = json_decode(base64_decode($encoded), true);
+    if (!$data || !isset($data['uid']) || !isset($data['exp']) || $data['exp'] < time()) {
+        return false;
+    }
+    $_SESSION['user_id'] = $data['uid'];
+    $_SESSION['name'] = $data['name'] ?? '';
+    $_SESSION['username'] = $data['uname'] ?? '';
+    $_SESSION['role'] = $data['role'] ?? 'admin';
+    return true;
+}
+
 function is_logged_in() {
-    return isset($_SESSION['user_id']) && !empty($_SESSION['user_id']);
+    if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
+        return true;
+    }
+    return restore_auth_from_cookie();
 }
 
 function require_login() {

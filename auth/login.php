@@ -37,6 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['role'] = $user['role'] ?? 'admin';
                 
+                set_auth_cookie($user['id'], $user['name'], $user['username'], $user['role'] ?? 'admin');
+                
                 log_activity($pdo, 'User Login', "User: {$user['username']} logged in successfully");
                 set_flash('success', "Welcome back, " . clean($user['name']) . "!");
                 
