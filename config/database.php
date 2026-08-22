@@ -18,10 +18,12 @@ $dsnOptions = [
     PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4"
 ];
 
-// Handle SSL for Cloud MySQL providers if present
+// Handle SSL for Cloud MySQL providers (TiDB, Aiven, PlanetScale)
 $sslCa = getenv('MYSQL_ATTR_SSL_CA') ?: (isset($_ENV['MYSQL_ATTR_SSL_CA']) ? $_ENV['MYSQL_ATTR_SSL_CA'] : null);
 if ($sslCa && file_exists($sslCa)) {
     $dsnOptions[PDO::MYSQL_ATTR_SSL_CA] = $sslCa;
+} elseif ($host !== 'localhost' && defined('PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT')) {
+    $dsnOptions[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = false;
 }
 
 try {
