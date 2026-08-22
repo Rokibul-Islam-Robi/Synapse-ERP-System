@@ -12,7 +12,7 @@ function base_url($path = '') {
     $rootMarkers = [
         '/auth/', '/categories/', '/products/', '/stock/', 
         '/reports/', '/suppliers/', '/customers/', '/users/', 
-        '/config/', '/database/', '/includes/', '/assets/', '/tests/'
+        '/config/', '/database/', '/includes/', '/assets/', '/tests/', '/api/'
     ];
     
     $base = '';

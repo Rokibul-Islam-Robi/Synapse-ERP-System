@@ -1,3 +1,63 @@
 <?php
-// Vercel serverless entrypoint for Synapse-ERP
-require_once __DIR__ . '/../index.php';
+// Vercel serverless front-controller router for Synapse-ERP
+
+$uri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
+$uri = urldecode($uri);
+$uri = ltrim($uri, '/');
+
+$baseDir = realpath(__DIR__ . '/..');
+
+// 1. Root route
+if (empty($uri) || $uri === 'index.php') {
+    require $baseDir . '/index.php';
+    exit;
+}
+
+$targetFile = realpath($baseDir . '/' . $uri);
+
+// 2. Direct file match within base directory
+if ($targetFile && strpos($targetFile, $baseDir) === 0 && file_exists($targetFile)) {
+    if (is_dir($targetFile)) {
+        $indexFile = $targetFile . '/index.php';
+        if (file_exists($indexFile)) {
+            require $indexFile;
+            exit;
+        }
+    } else {
+        $ext = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+        if ($ext === 'php') {
+            require $targetFile;
+            exit;
+        } else {
+            // Static file serving fallback
+            $mimes = [
+                'css'  => 'text/css',
+                'js'   => 'application/javascript',
+                'png'  => 'image/png',
+                'jpg'  => 'image/jpeg',
+                'jpeg' => 'image/jpeg',
+                'gif'  => 'image/gif',
+                'svg'  => 'image/svg+xml',
+                'ico'  => 'image/x-icon',
+                'woff' => 'font/woff',
+                'woff2'=> 'font/woff2',
+                'ttf'  => 'font/ttf'
+            ];
+            $mimeType = $mimes[$ext] ?? 'application/octet-stream';
+            header("Content-Type: $mimeType");
+            readfile($targetFile);
+            exit;
+        }
+    }
+}
+
+// 3. Fallback for URL without .php extension (e.g. /dashboard -> /dashboard.php)
+$targetPhp = realpath($baseDir . '/' . $uri . '.php');
+if ($targetPhp && strpos($targetPhp, $baseDir) === 0 && file_exists($targetPhp)) {
+    require $targetPhp;
+    exit;
+}
+
+// 4. Default: load index.php
+require $baseDir . '/index.php';
+
