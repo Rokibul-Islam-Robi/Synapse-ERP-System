@@ -19,11 +19,23 @@ $dsnOptions = [
 ];
 
 // Handle SSL for Cloud MySQL providers (TiDB, Aiven, PlanetScale)
-$sslCa = getenv('MYSQL_ATTR_SSL_CA') ?: (isset($_ENV['MYSQL_ATTR_SSL_CA']) ? $_ENV['MYSQL_ATTR_SSL_CA'] : null);
-if ($sslCa && file_exists($sslCa)) {
-    $dsnOptions[PDO::MYSQL_ATTR_SSL_CA] = $sslCa;
-} elseif ($host !== 'localhost' && defined('PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT')) {
-    $dsnOptions[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = false;
+if ($host !== 'localhost' && $host !== '127.0.0.1') {
+    $bundledCa = __DIR__ . '/cacert.pem';
+    $customCa = getenv('MYSQL_ATTR_SSL_CA') ?: (isset($_ENV['MYSQL_ATTR_SSL_CA']) ? $_ENV['MYSQL_ATTR_SSL_CA'] : null);
+    
+    if ($customCa && file_exists($customCa)) {
+        $dsnOptions[PDO::MYSQL_ATTR_SSL_CA] = $customCa;
+    } elseif (file_exists($bundledCa)) {
+        $dsnOptions[PDO::MYSQL_ATTR_SSL_CA] = $bundledCa;
+    } elseif (file_exists('/etc/ssl/certs/ca-certificates.crt')) {
+        $dsnOptions[PDO::MYSQL_ATTR_SSL_CA] = '/etc/ssl/certs/ca-certificates.crt';
+    } elseif (file_exists('/etc/pki/tls/certs/ca-bundle.crt')) {
+        $dsnOptions[PDO::MYSQL_ATTR_SSL_CA] = '/etc/pki/tls/certs/ca-bundle.crt';
+    }
+
+    if (defined('PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT')) {
+        $dsnOptions[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = false;
+    }
 }
 
 try {
