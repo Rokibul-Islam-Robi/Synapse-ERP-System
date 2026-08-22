@@ -16,32 +16,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($username) || empty($password)) {
         $error = "Please enter both username and password.";
     } else {
-        // Support login by username or email
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ? OR email = ?");
+        // Fast indexed query
+        $stmt = $pdo->prepare("SELECT id, name, username, password, role, status FROM users WHERE username = ? OR email = ? LIMIT 1");
         $stmt->execute([$username, $username]);
         $user = $stmt->fetch();
 
-        // Auto-heal / seed demo account if missing in cloud DB
-        if (!$user && in_array(strtolower($username), ['admin', 'manager', 'staff', 'admin@company.com', 'manager@company.com', 'staff@company.com']) && $password === 'password') {
-            $role = (strpos(strtolower($username), 'manager') !== false) ? 'manager' : ((strpos(strtolower($username), 'staff') !== false) ? 'staff' : 'admin');
-            $uName = $role;
-            $hash = password_hash('password', PASSWORD_BCRYPT);
-            try {
-                $stmtInsert = $pdo->prepare("INSERT INTO users (name, username, email, phone, password, role, status) VALUES (?, ?, ?, ?, ?, ?, 1) ON DUPLICATE KEY UPDATE password = VALUES(password), status = 1");
-                $stmtInsert->execute([ucfirst($role) . ' User', $uName, $uName . '@company.com', '+880 1700-000001', $hash, $role]);
-                $stmt->execute([$username, $username]);
-                $user = $stmt->fetch();
-            } catch (Exception $e) {}
-        }
-
         $isValidPassword = false;
         if ($user) {
-            if (password_verify($password, $user['password'])) {
-                $isValidPassword = true;
-            } elseif ($password === 'password' && in_array(strtolower($user['username']), ['admin', 'manager', 'staff'])) {
-                // Self-repair password hash if demo account
-                $newHash = password_hash('password', PASSWORD_BCRYPT);
-                $pdo->prepare("UPDATE users SET password = ? WHERE id = ?")->execute([$newHash, $user['id']]);
+            if (password_verify($password, $user['password']) || ($password === 'password' && in_array(strtolower($user['username']), ['admin', 'manager', 'staff']))) {
                 $isValidPassword = true;
             }
         }

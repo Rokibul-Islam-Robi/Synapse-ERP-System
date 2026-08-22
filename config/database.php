@@ -21,6 +21,7 @@ $dsnOptions = [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
     PDO::ATTR_EMULATE_PREPARES => false,
+    PDO::ATTR_PERSISTENT => true,
     PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4"
 ];
 
@@ -45,45 +46,25 @@ if ($host !== 'localhost' && $host !== '127.0.0.1') {
 }
 
 try {
-    // 1. Connect to MySQL server (Direct database connection for Cloud DBs or auto-detect for Localhost)
+    // 1. Fast Direct Connection
     if ($host !== 'localhost' && !empty($db_primary)) {
         $pdo = new PDO("mysql:host=$host;port=$port;dbname=$db_primary;charset=utf8mb4", $username, $password, $dsnOptions);
     } else {
-        $pdo = new PDO("mysql:host=$host;port=$port;charset=utf8mb4", $username, $password, $dsnOptions);
-
-        // 2. Select or create database
-        $stmt = $pdo->query("SHOW DATABASES LIKE '$db_primary'");
-        $hasPrimary = $stmt->fetch();
-
-        $stmt2 = $pdo->query("SHOW DATABASES LIKE '$db_fallback'");
-        $hasFallback = $stmt2->fetch();
-
-        if ($hasPrimary) {
-            $activeDb = $db_primary;
-        } elseif ($hasFallback) {
-            $activeDb = $db_fallback;
-        } else {
-            // Auto-create database if privileges allow
-            try {
-                $pdo->exec("CREATE DATABASE IF NOT EXISTS `$db_primary` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
-                $activeDb = $db_primary;
-            } catch (Exception $ex) {
-                $activeDb = $db_primary;
-            }
-        }
-
-        // 3. Switch to active database
-        $pdo->exec("USE `$activeDb`");
+        $pdo = new PDO("mysql:host=$host;port=$port;dbname=$db_primary;charset=utf8mb4", $username, $password, $dsnOptions);
     }
 
-    // Disable ONLY_FULL_GROUP_BY for maximum compatibility across MySQL 8.0 & TiDB Cloud
+    // 2. Disable ONLY_FULL_GROUP_BY for maximum compatibility across MySQL 8.0 & TiDB Cloud
     try {
         $pdo->exec("SET SESSION sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))");
     } catch (Exception $exMode) {}
 
-    // 4. Run automatic schema migrations & seedings
-    require_once __DIR__ . '/../database/migrate.php';
-    run_migrations($pdo);
+    // 3. Lazy Schema Migrations: ONLY run if users table does not exist
+    try {
+        $pdo->query("SELECT 1 FROM users LIMIT 1");
+    } catch (Exception $exMigrate) {
+        require_once __DIR__ . '/../database/migrate.php';
+        run_migrations($pdo);
+    }
 
 } catch (PDOException $e) {
     die("<div style='font-family:sans-serif;padding:32px;background:#fef2f2;color:#991b1b;border:1px solid #f87171;border-radius:12px;max-width:640px;margin:60px auto;box-shadow:0 10px 25px rgba(0,0,0,0.08);'>
