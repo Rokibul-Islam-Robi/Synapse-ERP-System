@@ -76,6 +76,11 @@ try {
         $pdo->exec("USE `$activeDb`");
     }
 
+    // Disable ONLY_FULL_GROUP_BY for maximum compatibility across MySQL 8.0 & TiDB Cloud
+    try {
+        $pdo->exec("SET SESSION sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))");
+    } catch (Exception $exMode) {}
+
     // 4. Run automatic schema migrations & seedings
     require_once __DIR__ . '/../database/migrate.php';
     run_migrations($pdo);

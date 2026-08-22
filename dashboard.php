@@ -21,7 +21,7 @@ $stockSummarySql = "SELECT
 FROM products p
 LEFT JOIN stock_transactions st ON st.product_id = p.id
 WHERE p.status = 1
-GROUP BY p.id";
+GROUP BY p.id, p.buying_price, p.selling_price, p.alert_quantity, p.opening_stock";
 
 $stockRows = $pdo->query($stockSummarySql)->fetchAll();
 
@@ -75,7 +75,7 @@ $catChartSql = "SELECT c.category_name, COUNT(p.id) as count
 FROM categories c
 LEFT JOIN products p ON p.category_id = c.id
 WHERE c.status = 1
-GROUP BY c.id
+GROUP BY c.id, c.category_name
 ORDER BY count DESC
 LIMIT 5";
 $catChartData = $pdo->query($catChartSql)->fetchAll();
@@ -119,7 +119,7 @@ FROM products p
 JOIN categories c ON c.id = p.category_id
 LEFT JOIN stock_transactions st ON st.product_id = p.id
 WHERE p.status = 1
-GROUP BY p.id
+GROUP BY p.id, p.product_name, p.sku, p.unit, c.category_name, p.alert_quantity, p.opening_stock
 HAVING current_stock <= p.alert_quantity
 ORDER BY current_stock ASC
 LIMIT 5";
