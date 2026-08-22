@@ -73,124 +73,67 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ?>
     </style>
 </head>
-<body class="auth-split-body">
+<body class="auth-landing-canvas">
 
-<div class="auth-split-container">
-    <!-- Left Hero / Brand Panel (Modern Organic & Tech Synergy) -->
-    <div class="auth-left-hero">
-        <div class="auth-brand-badge-group">
-            <div class="auth-hero-logo">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m7.5 4.27 9 5.15"></path>
-                    <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path>
-                    <path d="m3.3 7 8.7 5 8.7-5"></path>
-                    <path d="M12 22V12"></path>
-                </svg>
-            </div>
-            <div class="auth-hero-brand-name">
-                <span class="pill-badge">ENTERPRISE CLOUD</span>
-                <span class="brand-text">Synapse-ERP</span>
-            </div>
-        </div>
+<!-- Top Wavy Ribbon Header Shape in Neon Green -->
+<svg class="top-wave-header-art" viewBox="0 0 500 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="topWaveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00f59b" />
+            <stop offset="60%" stop-color="#10b981" />
+            <stop offset="100%" stop-color="#059669" />
+        </linearGradient>
+    </defs>
+    <path d="M0 0 H420 C360 40, 310 90, 240 75 C160 55, 120 120, 0 110 Z" fill="url(#topWaveGrad)" opacity="0.95" />
+</svg>
 
-        <!-- Custom Organic Tech Art inspired by Reference Image -->
-        <div class="auth-hero-art-wrapper">
-            <svg viewBox="0 0 340 220" width="100%" height="200" style="max-width: 320px;" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="artNeonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#00f59b" />
-                        <stop offset="100%" stop-color="#059669" />
-                    </linearGradient>
-                    <linearGradient id="artAmberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#f59e0b" />
-                        <stop offset="100%" stop-color="#d97706" />
-                    </linearGradient>
-                    <linearGradient id="artCyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#38bdf8" />
-                        <stop offset="100%" stop-color="#0284c7" />
-                    </linearGradient>
-                    <filter id="neonBlur" x="-20%" y="-20%" width="140%" height="140%">
-                        <feGaussianBlur stdDeviation="12" result="blur" />
-                    </filter>
-                </defs>
-
-                <!-- Ambient Glow Behind -->
-                <circle cx="170" cy="110" r="70" fill="#00f59b" opacity="0.18" filter="url(#neonBlur)" />
-
-                <!-- Organic Layered Flora / Petal Wave Forms -->
-                <path d="M170 30 C220 30, 270 70, 260 130 C250 180, 200 200, 160 195 C110 190, 80 160, 85 110 C90 60, 130 30, 170 30 Z" fill="#0c1f38" opacity="0.85" />
-                
-                <!-- Vibrant Organic Leaf/Flora Waves -->
-                <path d="M110 160 C90 120, 120 70, 160 90 C150 130, 130 155, 110 160 Z" fill="url(#artCyanGrad)" opacity="0.85" />
-                <path d="M230 160 C250 120, 220 70, 180 90 C190 130, 210 155, 230 160 Z" fill="url(#artAmberGrad)" opacity="0.85" />
-                <path d="M170 180 C130 170, 135 110, 170 125 C205 110, 210 170, 170 180 Z" fill="url(#artNeonGrad)" />
-
-                <!-- Stylized Central Executive Character / Synapse Core -->
-                <circle cx="170" cy="85" r="18" fill="#f8fafc" />
-                <path d="M165 72 C168 68, 175 68, 178 72 C185 75, 182 88, 170 88 C158 88, 155 75, 165 72 Z" fill="#060c18" />
-                <path d="M148 140 C148 112, 192 112, 192 140 C185 152, 155 152, 148 140 Z" fill="#f59e0b" />
-                
-                <!-- Floating Ambient Floating Hearts / Nodes -->
-                <circle cx="120" cy="65" r="4" fill="#00f59b" />
-                <circle cx="225" cy="55" r="5" fill="#f59e0b" />
-                <circle cx="210" cy="175" r="3.5" fill="#38bdf8" />
-                <circle cx="130" cy="180" r="4" fill="#00f59b" />
-
-                <!-- Floating Glass Metric Badge -->
-                <rect x="35" y="70" width="85" height="32" rx="8" fill="#060c18" fill-opacity="0.8" stroke="#00f59b" stroke-width="1.2" />
-                <text x="45" y="85" fill="#94a3b8" font-size="8" font-weight="600" font-family="Inter, sans-serif">ACCURACY</text>
-                <text x="45" y="96" fill="#00f59b" font-size="10" font-weight="800" font-family="Inter, sans-serif">99.98%</text>
-
-                <!-- Floating Glass Metric Badge 2 -->
-                <rect x="220" y="115" width="90" height="32" rx="8" fill="#060c18" fill-opacity="0.8" stroke="#38bdf8" stroke-width="1.2" />
-                <text x="230" y="130" fill="#94a3b8" font-size="8" font-weight="600" font-family="Inter, sans-serif">REAL-TIME</text>
-                <text x="230" y="141" fill="#38bdf8" font-size="10" font-weight="800" font-family="Inter, sans-serif">Multi-Tier</text>
-            </svg>
-        </div>
-
-        <div>
-            <h2 class="auth-hero-title">Intelligent Supply &amp; Inventory Governance</h2>
-            <p class="auth-hero-desc">
-                High-performance real-time analytics, automated deficit alerts, and audit compliance for modern growing enterprises.
-            </p>
-        </div>
-
-        <div class="auth-feature-list">
-            <div class="auth-feature-item">
-                <div class="feature-check-icon">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                </div>
-                <span>Role-Based Authentication (Admin, Manager, Staff)</span>
-            </div>
-
-            <div class="auth-feature-item">
-                <div class="feature-check-icon">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                </div>
-                <span>Real-Time Reorder &amp; Low Stock Engine</span>
-            </div>
-
-            <div class="auth-feature-item">
-                <div class="feature-check-icon">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                </div>
-                <span>Automated Stock Valuation &amp; Auditing</span>
-            </div>
-        </div>
+<!-- Top Navigation Bar (Matching Reference Layout) -->
+<header class="landing-topbar">
+    <div class="landing-nav-left">
+        <button type="button" class="hamburger-btn" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <a href="<?= base_url('auth/login.php') ?>" class="brand-badge-pill">
+            <span class="logo-dot"></span>
+            <span>Synapse-ERP</span>
+        </a>
     </div>
 
-    <!-- Right Form Panel -->
-    <div class="auth-right-form">
-        <div class="auth-form-header">
-            <div>
-                <h1 class="auth-form-title">Portal Sign In</h1>
-                <p class="auth-form-subtitle">Enter your corporate credentials to continue</p>
-            </div>
-            <span class="version-pill">v2.5 Enterprise</span>
+    <div class="landing-nav-right">
+        <button type="button" class="search-icon-btn" aria-label="Search">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </button>
+
+        <ul class="landing-nav-links">
+            <li><a href="#" class="active">HOME</a></li>
+            <li><a href="#">PRODUCT</a></li>
+            <li><a href="#">SALE</a></li>
+            <li><a href="#">SUPPORT</a></li>
+        </ul>
+    </div>
+</header>
+
+<!-- Main Two-Column Hero Container -->
+<main class="landing-hero-container">
+    <!-- Left Column: Typography & Interactive Portal Sign-In -->
+    <div class="hero-left-section">
+        <h1 class="hero-main-title">SYNAPSE</h1>
+        <div class="hero-sub-title">
+            <span>Enterprise ERP</span>
+            <span class="accent-tag">Precision Control</span>
         </div>
 
+        <p class="hero-desc-text">
+            Next-generation inventory intelligence, automated deficit alerts, and multi-tier valuation engineered for growing enterprises.
+        </p>
+
         <?php if ($error): ?>
-            <div class="alert alert-danger" style="margin-bottom: 16px;">
+            <div class="alert alert-danger" style="margin-bottom: 16px; border-radius: 12px;">
                 <div class="alert-content">
                     <svg class="flash-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
                     <span><?= clean($error) ?></span>
@@ -201,75 +144,164 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <?= render_flash() ?>
 
-        <!-- 1-Click Demo Roles Switcher -->
-        <div class="demo-roles-section">
-            <label class="demo-section-label">DEMO QUICK SIGN-IN (1-CLICK FILL)</label>
-            <div class="demo-role-buttons">
-                <button type="button" class="demo-role-btn active" onclick="fillCredentials('admin', 'password', this)">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                    <span>Admin</span>
-                </button>
-
-                <button type="button" class="demo-role-btn" onclick="fillCredentials('manager', 'password', this)">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2.2"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg>
-                    <span>Manager</span>
-                </button>
-
-                <button type="button" class="demo-role-btn" onclick="fillCredentials('staff', 'password', this)">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.2"><path d="m7.5 4.27 9 5.15"></path><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path></svg>
-                    <span>Staff</span>
-                </button>
-            </div>
+        <!-- 1-Click Demo Role Chips -->
+        <div class="demo-pills-row">
+            <button type="button" class="demo-chip active" onclick="fillCredentials('admin', 'password', this)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                <span>Admin</span>
+            </button>
+            <button type="button" class="demo-chip" onclick="fillCredentials('manager', 'password', this)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg>
+                <span>Manager</span>
+            </button>
+            <button type="button" class="demo-chip" onclick="fillCredentials('staff', 'password', this)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m7.5 4.27 9 5.15"></path><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path></svg>
+                <span>Staff</span>
+            </button>
         </div>
 
-        <form method="POST" id="loginForm">
-            <div class="form-group-floating">
-                <label class="floating-label">USERNAME OR EMAIL</label>
-                <div class="input-with-icon-wrapper">
-                    <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                    <input class="modern-input" type="text" id="usernameInput" name="username" value="admin" placeholder="name@company.com or username" required autofocus>
-                </div>
+        <!-- Integrated Sign-In Form -->
+        <form method="POST" id="loginForm" class="landing-auth-form">
+            <div class="landing-input-group">
+                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                <input class="landing-input" type="text" id="usernameInput" name="username" value="admin" placeholder="Username or email" required autofocus>
             </div>
 
-            <div class="form-group-floating">
-                <label class="floating-label">PASSWORD</label>
-                <div class="input-with-icon-wrapper">
-                    <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                    <input class="modern-input" type="password" id="passwordInput" name="password" value="password" placeholder="••••••••" required>
-                    <button type="button" class="password-toggle-btn" onclick="togglePassword()" title="Toggle password visibility">
-                        <svg id="eyeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                    </button>
-                </div>
+            <div class="landing-input-group">
+                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                <input class="landing-input" type="password" id="passwordInput" name="password" value="password" placeholder="Password" required>
+                <button type="button" class="landing-password-toggle" onclick="togglePassword()" title="Toggle password visibility">
+                    <svg id="eyeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                </button>
             </div>
 
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 22px;">
-                <label class="form-check" style="font-size: 13px;">
-                    <input type="checkbox" name="remember" checked>
-                    <span>Remember workstation</span>
-                </label>
+            <!-- Slider Pagination Dots (Matching Image ● ○ ○) -->
+            <div class="landing-dot-paginator">
+                <span class="paginator-dot active"></span>
+                <span class="paginator-dot"></span>
+                <span class="paginator-dot"></span>
             </div>
 
-            <button class="btn-corporate-submit" type="submit">
+            <!-- Big Rounded Pill CTA Button (Matching [ STARTE ] in Reference Image) -->
+            <button class="btn-landing-pill" type="submit">
                 <span>Sign In to Portal</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
             </button>
         </form>
-
-        <div class="auth-form-footer">
-            <div class="ssl-indicator">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                <span>256-Bit SSL Encrypted Session</span>
-            </div>
-            <div class="watermark-brand">Synapse-ERP • Precision Control</div>
-        </div>
     </div>
-</div>
+
+    <!-- Right Column: Organic Flora & Fluid Artwork (Matching Reference Layout) -->
+    <div class="hero-right-artwork">
+        <svg viewBox="0 0 540 460" width="100%" height="auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <!-- Vibrant Neon Green / Emerald Primary Fluid Gradient -->
+                <linearGradient id="neonFluidGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#00f59b" />
+                    <stop offset="50%" stop-color="#10b981" />
+                    <stop offset="100%" stop-color="#047857" />
+                </linearGradient>
+
+                <!-- Warm Yellow / Golden Botanical Leaf Gradient -->
+                <linearGradient id="warmYellowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#fef08a" />
+                    <stop offset="50%" stop-color="#fbbf24" />
+                    <stop offset="100%" stop-color="#d97706" />
+                </linearGradient>
+
+                <!-- Vibrant Orange / Coral Leaf Gradient -->
+                <linearGradient id="warmOrangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#fb923c" />
+                    <stop offset="100%" stop-color="#ea580c" />
+                </linearGradient>
+
+                <!-- Sky Blue / Azure Botanical Leaf Gradient -->
+                <linearGradient id="skyBlueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#7dd3fc" />
+                    <stop offset="100%" stop-color="#0284c7" />
+                </linearGradient>
+
+                <!-- Soft Shadow Filter -->
+                <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#00f59b" flood-opacity="0.3" />
+                </filter>
+            </defs>
+
+            <!-- 1. Ground Shadow Ellipse (Matching Reference Image) -->
+            <ellipse cx="270" cy="410" rx="230" ry="24" fill="url(#neonFluidGrad)" opacity="0.8" />
+            <ellipse cx="270" cy="410" rx="180" ry="16" fill="#047857" opacity="0.6" />
+
+            <!-- 2. Big Fluid Organic Wave Shape Backdrop in Neon-Green (Matching Reference Image) -->
+            <g filter="url(#softGlow)">
+                <path d="M140 160 C120 70, 200 50, 280 60 C370 70, 460 100, 450 200 C440 310, 420 370, 310 380 C200 390, 110 370, 100 280 C90 200, 160 220, 140 160 Z" fill="url(#neonFluidGrad)" />
+            </g>
+
+            <!-- 3. Botanical Layered Leaves & Flora -->
+            <!-- Golden/Yellow Foliage (Right) -->
+            <path d="M300 240 C340 150, 420 160, 450 240 C430 290, 360 310, 300 240 Z" fill="url(#warmYellowGrad)" />
+            <path d="M330 200 C370 120, 430 140, 430 210 C400 250, 350 250, 330 200 Z" fill="#fde047" opacity="0.9" />
+
+            <!-- Orange Central Foliage -->
+            <path d="M260 200 C270 100, 330 110, 340 210 C320 260, 280 260, 260 200 Z" fill="url(#warmOrangeGrad)" />
+
+            <!-- Sky Blue / Indigo Botanical Leaves (Left) -->
+            <path d="M220 250 C160 160, 100 200, 120 280 C150 330, 210 320, 220 250 Z" fill="url(#skyBlueGrad)" />
+            <path d="M190 280 C140 220, 110 260, 130 320 C160 350, 190 330, 190 280 Z" fill="#38bdf8" opacity="0.85" />
+
+            <!-- Small Little Branches with Leaves -->
+            <path d="M390 280 Q420 260 440 280" stroke="#f8fafc" stroke-width="2.5" stroke-linecap="round" fill="none" />
+            <circle cx="410" cy="265" r="5" fill="#f8fafc" />
+            <circle cx="430" cy="275" r="5" fill="#f8fafc" />
+
+            <path d="M130 310 Q100 290 90 310" stroke="#f8fafc" stroke-width="2.5" stroke-linecap="round" fill="none" />
+            <circle cx="110" cy="295" r="5" fill="#f8fafc" />
+            <circle cx="95" cy="305" r="5" fill="#f8fafc" />
+
+            <!-- 4. Central Illustrated Executive Character (Matching Reference Pose) -->
+            <g transform="translate(4, -8)">
+                <!-- Hair (Dark Corporate Slate) -->
+                <path d="M255 170 C240 140, 280 120, 290 150 C310 170, 305 240, 270 240 C250 240, 245 190, 255 170 Z" fill="#0f172a" />
+
+                <!-- Head & Neck -->
+                <ellipse cx="282" cy="165" rx="14" ry="17" fill="#fde68a" />
+                <path d="M278 180 L284 180 L284 205 L278 205 Z" fill="#fcd34d" />
+
+                <!-- Orange/Gold Executive Attire -->
+                <path d="M260 215 C275 200, 295 200, 310 215 L320 280 C300 300, 260 300, 245 280 Z" fill="url(#warmOrangeGrad)" />
+
+                <!-- Arms & Gestures -->
+                <path d="M265 220 Q278 240 282 260" stroke="#fde68a" stroke-width="6" stroke-linecap="round" fill="none" />
+                <path d="M300 220 Q290 240 282 260" stroke="#fde68a" stroke-width="6" stroke-linecap="round" fill="none" />
+
+                <!-- Lower Dress / Seated Pose (Matching Reference Image) -->
+                <path d="M245 280 C230 320, 280 340, 325 320 C340 300, 330 280, 320 280 Z" fill="#ea580c" />
+                
+                <!-- Legs in Graceful Sitting Pose -->
+                <path d="M260 320 C270 345, 330 345, 370 375 C378 380, 385 380, 390 375 C380 365, 330 330, 310 320 Z" fill="#fde68a" />
+            </g>
+
+            <!-- 5. Ambient Floating Hearts / Sparkles (Matching Reference Image) -->
+            <g>
+                <!-- Floating Hearts -->
+                <path d="M190 180 C190 174, 182 170, 178 175 C174 170, 166 174, 166 180 C166 190, 178 198, 178 198 C178 198, 190 190, 190 180 Z" fill="#fb923c" style="animation: floatParticle 4s ease-in-out infinite;" />
+                <path d="M230 110 C230 104, 222 100, 218 105 C214 100, 206 104, 206 110 C206 120, 218 128, 218 128 C218 128, 230 120, 230 110 Z" fill="#f59e0b" style="animation: floatParticle 5s ease-in-out infinite reverse;" />
+                <path d="M320 100 C320 94, 312 90, 308 95 C304 90, 296 94, 296 100 C296 110, 308 118, 308 118 C308 118, 320 110, 320 100 Z" fill="#fde68a" style="animation: floatParticle 4.5s ease-in-out infinite;" />
+                <path d="M360 130 C360 124, 352 120, 348 125 C344 120, 336 124, 336 130 C336 140, 348 148, 348 148 C348 148, 360 140, 360 130 Z" fill="#fb923c" style="animation: floatParticle 3.8s ease-in-out infinite reverse;" />
+
+                <!-- Floating Glowing Neon Green Sparkle Dots -->
+                <circle cx="160" cy="130" r="4" fill="#00f59b" />
+                <circle cx="410" cy="180" r="5" fill="#00f59b" />
+                <circle cx="430" cy="310" r="4" fill="#fbbf24" />
+                <circle cx="110" cy="240" r="4.5" fill="#38bdf8" />
+            </g>
+        </svg>
+    </div>
+</main>
 
 <script>
 function fillCredentials(user, pass, btn) {
     document.getElementById('usernameInput').value = user;
     document.getElementById('passwordInput').value = pass;
-    document.querySelectorAll('.demo-role-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.demo-chip').forEach(b => b.classList.remove('active'));
     if (btn) btn.classList.add('active');
 }
 
